@@ -51,7 +51,6 @@ public class InitializationHelperTest {
         Assert.assertEquals(tom.getName(),"Tom");
         Assert.assertTrue(tom.isFriend());
 
-
         List<Animal> lunchBuddies = lunchBuddiesMap.get(rex.getFavoriteFood());
         int royalCaninCount = lunchBuddies.size();
         Assert.assertEquals(royalCaninCount, 2);
