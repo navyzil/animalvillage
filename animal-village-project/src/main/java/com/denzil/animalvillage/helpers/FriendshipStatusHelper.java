@@ -9,28 +9,14 @@ public class FriendshipStatusHelper {
     public void addFriendAttempt(List<Animal> animalList) {
         animalList.forEach(animal -> {
             int animalFriendCount = getAnimalFriendCount(animal);
-            if(animalFriendCount<=2){
-                int probabilty = friendUnfriendProbabiltyRoll();
-                if(probabilty < 90){
-                    FriendshipUtil.gainFriendRoll(animal);
-                }
-                else
-                    FriendshipUtil.loseFriendRoll(animal);
-            }
+            FriendshipUtil.gainFriendRoll(animal, animalFriendCount);
         });
     }
 
     public void unFriendAttempt(List<Animal> animalList) {
         animalList.forEach(animal -> {
             int animalFriendCount = getAnimalFriendCount(animal);
-            if(animalFriendCount>=3){
-                int probabilty = friendUnfriendProbabiltyRoll();
-                if(probabilty < 90){
-                    FriendshipUtil.loseFriendRoll(animal);
-                }
-                else
-                    FriendshipUtil.gainFriendRoll(animal);
-            }
+            FriendshipUtil.loseFriendRoll(animal, animalFriendCount);
         });
     }
 
@@ -40,9 +26,4 @@ public class FriendshipStatusHelper {
                 .filter(animalFriend -> animalFriend.isFriend())
                 .count();
     }
-
-    private int friendUnfriendProbabiltyRoll(){
-        return (int)(Math.random()*100);
-    }
-
 }

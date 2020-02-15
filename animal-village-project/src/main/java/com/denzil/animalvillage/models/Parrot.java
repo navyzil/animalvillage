@@ -11,8 +11,4 @@ public class Parrot extends Bird{
     public boolean isTalking() {
         return isTalking;
     }
-
-    public void setTalking(boolean talking) {
-        isTalking = talking;
-    }
 }

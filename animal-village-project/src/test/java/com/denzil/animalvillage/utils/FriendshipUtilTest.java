@@ -18,7 +18,10 @@ public class FriendshipUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.gainFriendRoll(rex);
+        List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
     }
 
     @Test
@@ -26,9 +29,10 @@ public class FriendshipUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.gainFriendRoll(rex);
-
         List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
 
         for (Animal animalFriend : rexFriendList) {
             if(animalFriend.getId() == rex.getId()){
@@ -48,9 +52,10 @@ public class FriendshipUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.loseFriendRoll(rex);
-
         List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.loseFriendRoll(rex, numberOfFriends);
 
         for (Animal animalFriend : rexFriendList) {
             if(animalFriend.getId() == rex.getId()){

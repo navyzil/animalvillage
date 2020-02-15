@@ -11,8 +11,4 @@ public class Chicken extends Bird{
     public boolean isLayingEggs() {
         return isLayingEggs;
     }
-
-    public void setLayingEggs(boolean layingEggs) {
-        isLayingEggs = layingEggs;
-    }
 }

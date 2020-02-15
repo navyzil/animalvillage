@@ -11,9 +11,5 @@ public class Bird extends Animal{
     public String getWingspan() {
         return wingspan;
     }
-
-    public void setWingspan(String wingspan) {
-        this.wingspan = wingspan;
-    }
 }
 

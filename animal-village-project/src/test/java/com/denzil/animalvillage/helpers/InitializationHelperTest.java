@@ -69,6 +69,5 @@ public class InitializationHelperTest {
         Assert.assertEquals(shouldBeLua,"Lua");
         String shouldBeBob = lunchBuddiesMannaPro.get(2).getName();
         Assert.assertEquals(shouldBeBob,"Bob");
-
     }
 }

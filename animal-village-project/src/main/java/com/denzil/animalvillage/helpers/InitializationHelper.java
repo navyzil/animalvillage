@@ -10,6 +10,8 @@ import java.util.Map;
 public class InitializationHelper {
 
     public static List<Animal> initializeAnimals() {
+        System.out.println("Initializing Animals...");
+
         Dog rex = new Dog(1, "Rex", "Shepered", "Royal Canin", "Tom");
         Dog max = new Dog(2, "Max", "Shepered", "Purina ONE", "Jay");
         Dog tom = new Dog(3, "Tom", "Husky", "Royal Canin", "Rex");
@@ -22,7 +24,7 @@ public class InitializationHelper {
         Chicken lua = new Chicken(10, "Lua", "Manna Pro", false, "0.3m", "Emi");
         Rooster bob = new Rooster(11, "Bob", "Manna Pro", "0.5m");
         Parrot mac = new Parrot(12, "Mac", "Lafeber Original", "0.33m", true, "Alf");
-        Parrot alf = new Parrot(12, "Alf", "Kaytee Fiesta", "0.25m", false, "Mac");
+        Parrot alf = new Parrot(13, "Alf", "Kaytee Fiesta", "0.25m", false, "Mac");
 
         ArrayList<Animal> animalList = new ArrayList<Animal>();
         animalList.add(rex);
@@ -41,10 +43,122 @@ public class InitializationHelper {
 
         initializeFriendship(animalList);
 
+        printAnimals(animalList);
         return animalList;
     }
 
+    private static void printAnimals(ArrayList<Animal> animalList) {
+        System.out.println("Displaying Animals Information:");
+
+        animalList.forEach(animal -> {
+            if(animal instanceof Dog){
+                printDogInfo((Dog) animal);
+                System.out.println();
+            }
+            else if(animal instanceof Cat){
+                printCatInfo((Cat) animal);
+                System.out.println();
+            }
+            else if(animal instanceof Chicken){
+                printChickenInfo((Chicken) animal);
+                System.out.println();
+            }
+            else if(animal instanceof Rooster){
+                printRoosterInfo((Rooster) animal);
+                System.out.println();
+            }
+            else if(animal instanceof Parrot){
+                printParrotInfo((Parrot) animal);
+                System.out.println();
+            }
+        });
+    }
+
+    private static void printParrotInfo(Parrot animal) {
+        Parrot parrot = animal;
+        String canSpeak = parrot.isTalking() ? "yes" : "no";
+        StringBuilder parrotInfo = new StringBuilder("Parrot:")
+                .append(parrot.getName())
+                .append("\n")
+                .append("Favorite Food:")
+                .append(parrot.getFavoriteFood())
+                .append("\n")
+                .append("Wingspan:")
+                .append(parrot.getWingspan())
+                .append("\n")
+                .append("Can speak:")
+                .append(canSpeak)
+                .append("\n")
+                .append("Best friend forever:")
+                .append(parrot.getBff());
+        System.out.println(parrotInfo);
+    }
+
+    private static void printRoosterInfo(Rooster animal) {
+        Rooster rooster = animal;
+        StringBuilder roosterInfo = new StringBuilder("Rooster:")
+                .append(rooster.getName())
+                .append("\n")
+                .append("Favorite Food:")
+                .append(rooster.getFavoriteFood())
+                .append("\n")
+                .append("Wingspan:")
+                .append(rooster.getWingspan());
+        System.out.println(roosterInfo);
+    }
+
+    private static void printChickenInfo(Chicken animal) {
+        Chicken chicken = animal;
+        String laysEggs = chicken.isLayingEggs() ? "yes" : "no";
+        StringBuilder chickenInfo = new StringBuilder("Chicken:")
+                .append(chicken.getName())
+                .append("\n")
+                .append("Favorite Food:")
+                .append(chicken.getFavoriteFood())
+                .append("\n")
+                .append("Lays eggs:")
+                .append(laysEggs)
+                .append("\n")
+                .append("Wingspan:")
+                .append(chicken.getWingspan())
+                .append("\n")
+                .append("Best friend forever:")
+                .append(chicken.getBff());
+        System.out.println(chickenInfo);
+    }
+
+    private static void printCatInfo(Cat animal) {
+        Cat cat = animal;
+        StringBuilder catInfo = new StringBuilder("Cat:")
+                .append(cat.getName())
+                .append("\n")
+                .append("Favorite Food:")
+                .append(cat.getFavoriteFood())
+                .append("\n")
+                .append("Best friend forever:")
+                .append(cat.getBff());
+        System.out.println(catInfo);
+    }
+
+    private static void printDogInfo(Dog animal) {
+        Dog dog = animal;
+        StringBuilder dogInfo = new StringBuilder("Dog:")
+                .append(dog.getName())
+                .append("\n")
+                .append("Breed:")
+                .append(dog.getBreed())
+                .append("\n")
+                .append("Favorite Food:")
+                .append(dog.getFavoriteFood())
+                .append("\n")
+                .append("Best friend forever:")
+                .append(dog.getBff());
+        System.out.println(dogInfo);
+    }
+
     public static Map<String, List<Animal>> initializeLunchBuddies(List<Animal> animalList) {
+        System.out.println("Initializing Lunch Groupings...");
+
         Map<String, List<Animal>> lunchBuddyMap = new HashMap<>();
         List<Animal> royalCaninGroupList = new ArrayList<>();
         List<Animal> purinaOneGroupList = new ArrayList<>();
@@ -98,6 +212,7 @@ public class InitializationHelper {
     }
 
     private static void initializeFriendship(ArrayList<Animal> animalList) {
+        System.out.println("Initializing BFFs...");
         for (Animal animal : animalList) {
             animal.setFriendList(initializeShallowCopyAnimals());
             for (Animal animalFriend : animal.getFriendList()) {
@@ -128,7 +243,7 @@ public class InitializationHelper {
         Chicken lua = new Chicken(10, "Lua", "Manna Pro", false, "0.3m", "Emi");
         Rooster bob = new Rooster(11, "Bob", "Manna Pro", "0.5m");
         Parrot mac = new Parrot(12, "Mac", "Lafeber Original", "0.33m", true, "Alf");
-        Parrot alf = new Parrot(12, "Alf", "Kaytee Fiesta", "0.25m", false, "Mac");
+        Parrot alf = new Parrot(13, "Alf", "Kaytee Fiesta", "0.25m", false, "Mac");
 
         ArrayList<Animal> animalList = new ArrayList<Animal>();
         animalList.add(rex);

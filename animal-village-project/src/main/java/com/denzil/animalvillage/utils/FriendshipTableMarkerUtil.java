@@ -10,10 +10,10 @@ public class FriendshipTableMarkerUtil {
         Animal animalFriend = friendList.get(animalFriendListIndex);
         if(animalFriend.isFriend()){
             if(animalFriend.getId() == animal.getId()){
-                return "/";
+                return " / ";
             }
-            return "X";
+            return " X ";
         }
-        return " ";
+        return "   ";
     }
 }

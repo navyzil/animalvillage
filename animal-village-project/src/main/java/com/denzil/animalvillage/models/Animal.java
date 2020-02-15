@@ -21,32 +21,16 @@ public class Animal {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFavoriteFood() {
         return favoriteFood;
     }
 
-    public void setFavoriteFood(String favoriteFood) {
-        this.favoriteFood = favoriteFood;
-    }
-
     public String getBff() {
         return bff;
-    }
-
-    public void setBff(String bff) {
-        this.bff = bff;
     }
 
     public boolean isFriend() {

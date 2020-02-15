@@ -18,7 +18,10 @@ public class FriendshipTableMarkerUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.gainFriendRoll(rex);
+        List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
     }
 
     @Test
@@ -26,24 +29,25 @@ public class FriendshipTableMarkerUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.gainFriendRoll(rex);
-
         List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
 
         for (int index=0; index < rexFriendList.size(); index++) {
             Animal animalFriend = rexFriendList.get(index);
             String friendshipMarker = FriendshipTableMarkerUtil.generateFriendshipMarker(rex, index);
             if(animalFriend.getId() == rex.getId()){
-                Assert.assertEquals(friendshipMarker,"/");
+                Assert.assertEquals(friendshipMarker.trim(),"/");
             }
             else if(animalFriend.getName() == rex.getBff()){
-                Assert.assertEquals(friendshipMarker,"X");
+                Assert.assertEquals(friendshipMarker.trim(),"X");
             }
             else if(animalFriend.isFriend()){
-                Assert.assertEquals(friendshipMarker,"X");
+                Assert.assertEquals(friendshipMarker.trim(),"X");
             }
             else if(!animalFriend.isFriend()){
-                Assert.assertEquals(friendshipMarker," ");
+                Assert.assertEquals(friendshipMarker.trim(),"");
             }
         }
     }
@@ -53,9 +57,10 @@ public class FriendshipTableMarkerUtilTest {
         Dog rex = (Dog)animals.get(0);
         Assert.assertNotNull(rex);
         Assert.assertEquals(rex.getBff(),"Tom");
-        FriendshipUtil.loseFriendRoll(rex);
-
         List<Animal> rexFriendList = rex.getFriendList();
+        int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
+
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
 
         for (Animal animalFriend : rexFriendList) {
             if(animalFriend.getId() == rex.getId()){
