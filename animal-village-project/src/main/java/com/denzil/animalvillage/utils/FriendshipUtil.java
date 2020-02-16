@@ -11,6 +11,7 @@ public class FriendshipUtil {
             if (probabilty < 90) {
                 gainFriendAttemptRoll(animal, animalList);
             }
+            return;
         }
         if(probabilty >= 90){
             gainFriendAttemptRoll(animal, animalList);
@@ -23,6 +24,7 @@ public class FriendshipUtil {
             if (probabilty < 90) {
                 unfriendAttemptRoll(animal, animalList);
             }
+            return;
         }
         if(probabilty >= 90){
             unfriendAttemptRoll(animal, animalList);
