@@ -9,14 +9,14 @@ public class FriendshipStatusHelper {
     public void addFriendAttempt(List<Animal> animalList) {
         animalList.forEach(animal -> {
             int animalFriendCount = getAnimalFriendCount(animal);
-            FriendshipUtil.gainFriendRoll(animal, animalFriendCount);
+            FriendshipUtil.gainFriendRoll(animal, animalFriendCount, animalList);
         });
     }
 
     public void unFriendAttempt(List<Animal> animalList) {
         animalList.forEach(animal -> {
             int animalFriendCount = getAnimalFriendCount(animal);
-            FriendshipUtil.loseFriendRoll(animal, animalFriendCount);
+            FriendshipUtil.loseFriendRoll(animal, animalFriendCount, animalList);
         });
     }
 

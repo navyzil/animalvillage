@@ -2,32 +2,34 @@ package com.denzil.animalvillage.utils;
 
 import com.denzil.animalvillage.models.Animal;
 
+import java.util.List;
+
 public class FriendshipUtil {
-    public static void gainFriendRoll(Animal animal, int animalFriendCount) {
+    public static void gainFriendRoll(Animal animal, int animalFriendCount, List<Animal> animalList) {
         int probabilty = friendUnfriendProbabiltyRoll();
         if(animalFriendCount <= 2) {
             if (probabilty < 90) {
-                gainFriendAttemptRoll(animal);
+                gainFriendAttemptRoll(animal, animalList);
             }
         }
         if(probabilty >= 90){
-            gainFriendAttemptRoll(animal);
+            gainFriendAttemptRoll(animal, animalList);
         }
     }
 
-    public static void loseFriendRoll(Animal animal, int animalFriendCount) {
+    public static void loseFriendRoll(Animal animal, int animalFriendCount, List<Animal> animalList) {
         int probabilty = friendUnfriendProbabiltyRoll();
         if(animalFriendCount >= 3) {
             if (probabilty < 90) {
-                unfriendAttemptRoll(animal);
+                unfriendAttemptRoll(animal, animalList);
             }
         }
         if(probabilty >= 90){
-            unfriendAttemptRoll(animal);
+            unfriendAttemptRoll(animal, animalList);
         }
     }
 
-    private static void unfriendAttemptRoll(Animal animal) {
+    private static void unfriendAttemptRoll(Animal animal, List<Animal> animalList) {
         int animalFriendId = animalFriendRoll();
         for (Animal animalFriend : animal.getFriendList()) {
             String animalFriendName = animalFriend.getName();
@@ -42,13 +44,14 @@ public class FriendshipUtil {
                     continue;
                 } else {
                     animalFriend.setFriend(false);
+                    reflectFriendShipToOtherParty(animal, animalList, animalFriend, false);
                     System.out.println(animal.getName()+ " and " +animalFriend.getName()+ " are not friends anymore.");
                 }
             }
         }
     }
 
-    private static void gainFriendAttemptRoll(Animal animal) {
+    private static void gainFriendAttemptRoll(Animal animal, List<Animal> animalList) {
         int animalFriendId = animalFriendRoll();
         for (Animal animalFriend : animal.getFriendList()) {
             if (animal.getName() != animalFriend.getName() && animal.getBff() != animalFriend.getName()) {
@@ -60,6 +63,7 @@ public class FriendshipUtil {
                     continue;
                 }
                 animalFriend.setFriend(true);
+                reflectFriendShipToOtherParty(animal, animalList, animalFriend, true);
                 System.out.println(animal.getName() + " and " + animalFriend.getName() + " are friends now.");
                 continue;
             }
@@ -67,6 +71,19 @@ public class FriendshipUtil {
                 System.out.println(animalFriend.getName() + " doesn't want to be friends");
             }
         }
+    }
+
+    private static void reflectFriendShipToOtherParty(Animal animal, List<Animal> animalList, Animal animalFriend, boolean isFriends) {
+        animalList.forEach(animalInMasterList -> {
+            if (animalInMasterList.getId() == animalFriend.getId()) {
+                List<Animal> friendList = animalInMasterList.getFriendList();
+                friendList.forEach(animalInAnimalFriendList -> {
+                    if (animalInAnimalFriendList.getId() == animal.getId()) {
+                        animalInAnimalFriendList.setFriend(isFriends);
+                    }
+                });
+            }
+        });
     }
 
     private static int animalFriendRoll() {

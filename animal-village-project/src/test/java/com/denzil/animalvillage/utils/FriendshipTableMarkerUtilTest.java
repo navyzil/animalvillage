@@ -21,7 +21,7 @@ public class FriendshipTableMarkerUtilTest {
         List<Animal> rexFriendList = rex.getFriendList();
         int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
 
-        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends, animals);
     }
 
     @Test
@@ -32,7 +32,7 @@ public class FriendshipTableMarkerUtilTest {
         List<Animal> rexFriendList = rex.getFriendList();
         int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
 
-        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends, animals);
 
         for (int index=0; index < rexFriendList.size(); index++) {
             Animal animalFriend = rexFriendList.get(index);
@@ -60,7 +60,7 @@ public class FriendshipTableMarkerUtilTest {
         List<Animal> rexFriendList = rex.getFriendList();
         int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
 
-        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends, animals);
 
         for (Animal animalFriend : rexFriendList) {
             if(animalFriend.getId() == rex.getId()){

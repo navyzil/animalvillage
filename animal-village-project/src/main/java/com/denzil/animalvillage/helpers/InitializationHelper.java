@@ -211,10 +211,10 @@ public class InitializationHelper {
         return lunchBuddyMap;
     }
 
-    private static void initializeFriendship(ArrayList<Animal> animalList) {
+    private static void initializeFriendship(ArrayList<Animal> animalList){
         System.out.println("Initializing BFFs...");
         for (Animal animal : animalList) {
-            animal.setFriendList(initializeShallowCopyAnimals());
+            animal.setFriendList(initializeShallowCopyAnimals(animalList));
             for (Animal animalFriend : animal.getFriendList()) {
                 if (animal.getId() == animalFriend.getId()) {
                     animalFriend.setFriend(true);
@@ -229,36 +229,18 @@ public class InitializationHelper {
      * Shallow copy is created to prevent overwriting of friendship flags among animals
      *
      * @return List<Animal> list of Shallow copy of Animal classes
+     * @param animalList
      */
-    private static List<Animal> initializeShallowCopyAnimals() {
-        Dog rex = new Dog(1, "Rex", "Shepered", "Royal Canin", "Tom");
-        Dog max = new Dog(2, "Max", "Shepered", "Purina ONE", "Jay");
-        Dog tom = new Dog(3, "Tom", "Husky", "Royal Canin", "Rex");
-        Dog jay = new Dog(4, "Jay", "Husky", "Purina ONE", "Max");
-        Cat zoe = new Cat(5, "Zoe", "9Lives", "Ada");
-        Cat ada = new Cat(6, "Ada", "Purina Friskies", "Zoe");
-        Chicken meg = new Chicken(7, "Meg", "Purina Layena", true, "0.4m", "Lis");
-        Chicken lis = new Chicken(8, "Lis", "Manna Pro", true, "0.35m", "Meg");
-        Chicken emi = new Chicken(9, "Emi", "Purina Layena", false, "0.25m", "Lua");
-        Chicken lua = new Chicken(10, "Lua", "Manna Pro", false, "0.3m", "Emi");
-        Rooster bob = new Rooster(11, "Bob", "Manna Pro", "0.5m");
-        Parrot mac = new Parrot(12, "Mac", "Lafeber Original", "0.33m", true, "Alf");
-        Parrot alf = new Parrot(13, "Alf", "Kaytee Fiesta", "0.25m", false, "Mac");
-
-        ArrayList<Animal> animalList = new ArrayList<Animal>();
-        animalList.add(rex);
-        animalList.add(max);
-        animalList.add(tom);
-        animalList.add(jay);
-        animalList.add(zoe);
-        animalList.add(ada);
-        animalList.add(meg);
-        animalList.add(lis);
-        animalList.add(emi);
-        animalList.add(lua);
-        animalList.add(bob);
-        animalList.add(mac);
-        animalList.add(alf);
-        return animalList;
+    private static List<Animal> initializeShallowCopyAnimals(ArrayList<Animal> animalList){
+        ArrayList<Animal> animalShallowCopyList = new ArrayList<Animal>();
+        for (Animal animal : animalList) {
+            try {
+                Animal animalCopy = (Animal) animal.clone();
+                animalShallowCopyList.add(animalCopy);
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException("Unable to clone Animal:"+animal.getName()+" due to:"+e);
+            }
+        }
+        return animalShallowCopyList;
     }
 }

@@ -2,7 +2,7 @@ package com.denzil.animalvillage.models;
 
 import java.util.List;
 
-public class Animal {
+public class Animal implements Cloneable{
     private int id;
     private String name;
     private String favoriteFood;
@@ -47,5 +47,9 @@ public class Animal {
 
     public void setFriendList(List<Animal> friendList) {
         this.friendList = friendList;
+    }
+
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 }

@@ -21,7 +21,7 @@ public class RenderTableHelperTest {
         List<Animal> rexFriendList = rex.getFriendList();
         int numberOfFriends = (int) rexFriendList.stream().filter(animalFriend -> animalFriend.isFriend()).count();
 
-        FriendshipUtil.gainFriendRoll(rex, numberOfFriends);
+        FriendshipUtil.gainFriendRoll(rex, numberOfFriends, animals);
     }
 
     @Test
