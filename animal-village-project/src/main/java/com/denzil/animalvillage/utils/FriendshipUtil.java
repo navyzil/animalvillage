@@ -76,9 +76,9 @@ public class FriendshipUtil {
     }
 
     private static void reflectFriendShipToOtherParty(Animal animal, List<Animal> animalList, Animal animalFriend, boolean isFriends) {
-        animalList.forEach(animalInMasterList -> {
-            if (animalInMasterList.getId() == animalFriend.getId()) {
-                List<Animal> friendList = animalInMasterList.getFriendList();
+        animalList.forEach(animalFriendInList -> {
+            if (animalFriendInList.getId() == animalFriend.getId()) {
+                List<Animal> friendList = animalFriendInList.getFriendList();
                 friendList.forEach(animalInAnimalFriendList -> {
                     if (animalInAnimalFriendList.getId() == animal.getId()) {
                         animalInAnimalFriendList.setFriend(isFriends);
